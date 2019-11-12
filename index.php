@@ -10,10 +10,12 @@
 
 	<div class="col-sm-5 col-sm-offset-2">
 		
+		<h3>Formulario</h3>
+
 		<form  action="" method="POST">
 			
 			<div class="form-group">
-				<label>Nombre:</label>
+				<label>Nombre:</label> (solo letras y espacios)
 				<input class="form-control" type="text" name="nombre" id="nombre" onblur="checkTexto( this )">
 				<p id="resnombre" style="display: none">Ha utilizado carácteres no válidos</p>
 			</div>
@@ -25,6 +27,11 @@
 				<p id="resapellido1" style="display: none">Ha utilizado carácteres no válidos</p>
 			</div>
 
+			<div class="form-group">
+				<label>Mensaje</label> (solo letras, números, espacios, guiones, comas y puntos)
+				<textarea class="form-control" id="mensaje" name="mensaje" rows="3" onblur="checkTexto( this )"></textarea>
+				<p id="resmensaje" style="display: none">Ha utilizado carácteres no válidos</p>
+			</div>
 			<p><button>Enviar</button></p>
 
 		</form>
@@ -36,8 +43,15 @@
 
 		function checkTexto( txt )
 		{	
-			//referencia: lestras, espacios, á é í ó ú Á É Í Ó Ú à è ì ò ù À È Ì Ò Ù ä ë ï ö ü Ä Ë Ï Ö Ü ñ Ñ
-     		var patt = /^[a-zA-Z \u00E1\u00E9\u00ED\u00F3\u00FA\u00C1\u00C9\u00CD\u00D3\n00DA\u00E0\u00E8\u00EC\u00F2\u00F9\u00C0\u00C8\u00CC\u00D2\u00D9\u00E4\u00EB\u00EF\u00F6\u00FC\u00C4\u00CB\u00CF\u00D6\u00DC\u00F1\u00D1]+$/g;
+			if( txt.id == "mensaje" ){
+
+	     		var patt = /^[\w ,.-\u00E1\u00E9\u00ED\u00F3\u00FA\u00C1\u00C9\u00CD\u00D3\n00DA\u00E0\u00E8\u00EC\u00F2\u00F9\u00C0\u00C8\u00CC\u00D2\u00D9\u00E4\u00EB\u00EF\u00F6\u00FC\u00C4\u00CB\u00CF\u00D6\u00DC\u00F1\u00D1]+$/g;
+
+			} else {
+
+				//referencia: lestras, espacios, á é í ó ú Á É Í Ó Ú à è ì ò ù À È Ì Ò Ù ä ë ï ö ü Ä Ë Ï Ö Ü ñ Ñ
+	     		var patt = /^[a-zA-Z \u00E1\u00E9\u00ED\u00F3\u00FA\u00C1\u00C9\u00CD\u00D3\n00DA\u00E0\u00E8\u00EC\u00F2\u00F9\u00C0\u00C8\u00CC\u00D2\u00D9\u00E4\u00EB\u00EF\u00F6\u00FC\u00C4\u00CB\u00CF\u00D6\u00DC\u00F1\u00D1]+$/g;
+			}
 
 		     if( patt.test( txt.value ) ){
 		         console.log("ok");
